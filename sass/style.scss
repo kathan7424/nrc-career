@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/*!
+	Theme Name:   National Realty Centers
+	Description:  A Custom theme written for National Realty Centers
+	Author:       build/create
+	Author URI:   http://buildcreate.com
+	Version:      1.0
+	Text Domain:  bc
+*/
+
+@import "partials/reset";
+@import "partials/functions";
+@import "partials/variables";
+@import "partials/base";
+@import "partials/general";
+@import "partials/forms";
+@import "partials/header";
+@import "partials/footer";
+@import "partials/home";
+@import "partials/content_blocks";
+@import "partials/sidebar";
+@import "partials/templates";
+@import "partials/blog";
+@import "partials/print";
+
+// custom css here.. or make more partials or w/e
+
+.ld-item-name {
+    display: flex;
+    align-items: center;
+
+    .ld-status-icon {
+        margin-top: 0 !important;
+    }
+}
+
+.ld-course-step-back {
+    margin-top: 1em !important;
+}

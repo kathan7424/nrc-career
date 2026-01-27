@@ -1,0 +1,276 @@
+.clearer {
+    display: block;
+    clear: both;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.no-link {
+    cursor: default;
+}
+
+#site-wrap {
+    position: relative;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+    height: 100%;
+
+    @media screen and (max-width: pem(1280)) {
+        padding: 0 1em;
+    }
+
+    &.skinny {
+        max-width: 750px;
+    }
+
+    &.narrow {
+        max-width: 950px;
+    }
+
+    &.overflow {
+        max-width: 1400px;
+    }
+
+    &.wide {
+        max-width: 1600px;
+
+        @media screen and (max-width: pem(1680)) {
+            padding: 0 1em;
+        }
+    }
+
+    &.full {
+        max-width: none;
+    }
+
+    &.no-pad {
+        padding: 0;
+    }
+}
+
+.button-wrap {
+    text-align: center;
+}
+
+.divider {
+    display: block;
+    border-bottom: 3px solid $blue;
+    width: 300px;
+    margin: 0 auto 6em;
+}
+
+.quote-wrap {
+    color: $white;
+    max-width: 750px;
+    margin: 10em auto 6em;
+
+    .quote {
+        text-transform: uppercase;
+        margin-bottom: 4em;
+
+        .user-content {
+            font-size: 2.1em;
+
+            p {
+                line-height: 1.4em;
+            }
+        }
+    }
+
+    .quote-marks {
+        font-size: 5em;
+        margin-bottom: -0.5em;
+        text-align: center;
+
+        span {
+            display: inline-block;
+            margin: 0 0.05em;
+        }
+    }
+
+    .quote-citation {
+        text-align: center;
+        text-transform: lowercase;
+        font-size: 1.1em;
+        letter-spacing: 2px;
+        line-height: 2em;
+        position: relative;
+
+        .quote-affiliation {
+            display: block;
+        }
+    }
+}
+
+
+.embed-container,
+.embedContainer {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    width: 100%;
+
+    embed,
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#top-link {
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 99;
+    background: $white;
+    padding: 0.5em 0.6em;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: pem(900)) {
+        display: none !important;
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4em;
+    padding: 0.5em;
+
+    a {
+        padding: 1em;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 200px;
+        text-align: center;
+
+        @media screen and (max-width: pem(600)) {
+            font-size: 1em;
+            width: 150px;
+        }
+
+        &:hover {}
+
+        .fa-angle-left {
+            margin-right: 0.5em;
+        }
+
+        .fa-angle-right {
+            margin-left: 0.5em;
+        }
+    }
+}
+
+.post-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4em 0 2em;
+    text-transform: uppercase;
+
+    a {
+        padding: 0.5em;
+    }
+
+    span {
+        padding: 0.5em;
+
+        &.prev,
+        &.next {}
+    }
+
+    .page-numbers {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .prev,
+    .next {
+        flex: 0 0 auto;
+    }
+}
+
+.fancybox-slide--iframe .fancybox-content {
+    width: 800px;
+    height: 600px;
+    max-width: 80%;
+    max-height: 80%;
+    margin: 0;
+}
+
+
+// whitelabeling wplogin
+.login {
+    background: #dddddd;
+
+    #login {
+        h1 {
+            a {
+                background: url('images/logo.png') center no-repeat;
+                background-size: contain;
+                margin: 0 auto;
+                width: 100%;
+                height: 60px;
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        #loginform {
+            padding: 1.5em;
+
+            label {
+                font-size: 1em;
+            }
+
+            p {}
+
+            #wp-submit {
+                text-shadow: none;
+                text-transform: uppercase;
+                font-size: 1em;
+                padding: 0.5em 1.5em;
+                min-width: auto;
+                outline: 0;
+                box-shadow: none;
+                height: auto;
+                line-height: 1em;
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        #nav,
+        #backtoblog {
+            text-align: center;
+            font-size: 1em;
+
+            a {}
+        }
+    }
+}
+
+.ui-datepicker-calendar {
+    a {
+        transition: none;
+    }
+}

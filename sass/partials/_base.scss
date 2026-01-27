@@ -1,0 +1,274 @@
+body {
+	color:$dark-grey;
+	// background:#fafafa url('images/bg.png') top center repeat-y;
+	background:#fafafa;
+	font-size: $base-font-size;
+	font-family: $base;
+	-webkit-text-size-adjust: 100%;
+
+	h1, h2, h3, h4, h5, h6 {
+		line-height: 1.4em;
+		margin: 0 0 0.8em 0;
+		padding: 0;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+
+		&:last-child {
+			margin-bottom:0;
+		}
+	}
+
+	h1 {
+		font-size: 2.8em;
+		text-transform:uppercase;
+	}
+
+	h2 {
+		font-size: 2.2em;
+		text-transform:uppercase;
+	}
+
+	h3 {
+		font-size: 1.9em;
+	}
+
+	h4, h5, h6 {
+		font-size: 1.5em;
+	}	
+
+	img {
+		max-width:100%;
+		height:auto;
+		vertical-align: middle;
+	}
+
+	p {
+		line-height:1.4em;
+	}
+
+	a {
+		cursor:pointer;
+		text-decoration: none;
+		position:relative;
+		display:inline-block;
+		transition:color 100ms ease-in;
+		color:$blue;
+	}
+
+	strong {
+		font-weight:bold;
+	}
+
+	em {
+		font-style:italic;
+	}
+
+	sup {
+		vertical-align: super;
+		font-size:0.6em;
+	}
+
+	u {
+		display: inline-block;
+		position: relative;
+		text-decoration: none;
+
+		&:after {
+			content:'';
+			position:absolute;
+			bottom:-0.1em;
+			left:0;
+			width:95%;
+			display: block;
+			border-top:3px solid $blue;
+		}
+	}
+
+	ol {
+		list-style-type: decimal;
+		margin-left:2.5em;
+		padding:0.5em 0 2em;
+
+		li {
+			padding-left:0.4em;
+			margin-bottom: 0.5em;
+		}
+	}	
+
+	hr {
+		border: none;
+		border-top: 1px solid #aaaaaa;
+		position:relative;
+		height:1px;
+		margin:2em 0;
+	}
+
+	span {
+		line-height:1em;
+	}
+
+	p {
+		margin:0 0 1.4em 0;
+
+		&:last-child {
+			margin-bottom:0;
+		}
+	}
+
+	form {
+		input,
+		button,
+		textarea,
+		select {
+			font-size: 1em;
+			outline: 0;
+		}
+	}		
+
+	button {
+		font-size: 1em;
+		outline: 0;
+		cursor:pointer;
+		border:none;
+	}
+
+	.alignleft {
+		margin-right: 1.5em;
+		display: inline;
+		float: left;
+	}
+
+	.alignright {
+		margin-left: 1.5em;
+		display: inline;
+		float: right;
+	}
+
+	.aligncenter {
+		margin-right: auto;
+		margin-left: auto;
+		display: block;
+		clear: both;
+	}
+
+	.bc-button {
+		text-transform: uppercase;
+		background:$blue;
+		color:$white;
+		font-size:0.9em;
+	    padding:0.6em 2em;
+	    letter-spacing: 2px;
+	    border-radius: 3px;
+	    transition:transform 100ms ease-in;
+	    display:block;
+	    max-width: 400px;
+	    margin:0 auto;
+	    cursor:pointer;
+
+	    &:hover {
+	    	transform: scale(1.05);
+	    }
+	}
+
+
+	// only for user entered wysiwyg content
+	.user-content {
+		font-size:$base-font-size;
+
+		h1, h2, h3, h4, h5, h6 {
+			line-height: 1.1em;
+		}
+
+		h1 {
+			font-size:2.8em;
+			text-transform: initial;
+		}
+
+		h2 {
+			text-transform: initial;
+			font-size:1.7em;
+		}
+
+		h3 {
+			font-size:1.3em;
+			text-transform: uppercase;
+		}
+
+		h4 {
+			font-size:1.1em;
+		}
+
+		h5, h6 {
+			font-size:1em;
+		}
+
+		blockquote {
+			color:#9d9d9d;
+			padding:1em 0 1em 2em;
+			margin:2em 0;
+			border-left:3px solid $grey;
+
+			p {
+				line-height: 1.6em;
+			}
+		}
+
+		p {
+			line-height: 1.4em;
+			margin-bottom:1.4em;
+
+			&:last-child {
+				margin-bottom:0;
+			}
+		}
+
+		ul {
+			margin-left:2.5em;
+			padding: 0.5em 0 2em;
+			
+			li {
+				list-style-type: disc;
+				margin-bottom: 0.5em;
+				position:relative;
+				line-height: 1.2em;
+			}
+		}
+
+		ol {
+			li {
+				padding-left:0;
+				line-height: 1.2em;
+				margin-bottom: 0.5em;
+			}
+
+		}
+	}
+
+	// responsive for site but not tinymce
+	@media screen and (max-width: pem(750)){
+		-webkit-text-size-adjust: 100%;
+	}
+
+	h1 {
+		@media screen and (max-width: pem(750)){
+			font-size:2.2em;
+		}
+	}	
+
+	h2 {
+		@media screen and (max-width: pem(750)){
+			font-size:1.8em;
+		}
+	}	
+
+	h3 {
+		@media screen and (max-width: pem(750)){
+			font-size:1.6em;
+		}
+	}
+}
+
+#tinymce {
+	padding:1em !important;
+	background:$white;
+}

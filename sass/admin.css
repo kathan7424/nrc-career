@@ -1,0 +1,22 @@
+.components-notice-list {
+  position: static !important;
+}
+
+.wp-block {
+  max-width: 95%;
+}
+
+.acf-field-accordion {
+  margin-bottom: 0.5em !important;
+}
+.acf-field-accordion .acf-accordion-title {
+  background: #0073aa;
+  color: #ffffff;
+}
+.acf-field-accordion .acf-accordion-title i {
+  color: #ffffff !important;
+}
+.acf-field-accordion .acf-accordion-title:hover {
+  background: #0073aa !important;
+  color: #ffffff;
+}/*# sourceMappingURL=admin.css.map */

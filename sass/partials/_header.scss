@@ -1,0 +1,154 @@
+#header {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+
+	.header-wrap {
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+		font-size:1em;
+		text-transform:uppercase;
+		flex-wrap:wrap;
+		padding:0.5em 0;
+
+		@media screen and (max-width: pem(950)){
+			align-items: center;
+		}
+
+		a {
+			color:$dark-grey;
+
+			&:hover {
+				color:$blue;
+			}
+		}
+
+		.logo-wrap {
+			flex:0 0 265px;
+			padding:0.5em 0;
+			align-self: center;
+
+			@media screen and (max-width: pem(1050)){
+				flex:0 0 180px;
+			}
+		}
+
+		.main-nav-wrap {
+			flex:1 1 auto;
+			width: calc(100% - 265px);
+
+			.main-nav{
+				@media screen and (max-width: pem(750)){
+					display:none;
+				}
+
+				> ul {	
+					display:flex;
+					justify-content:flex-end;
+					align-items:center;
+
+					> li {
+						transition:all 100ms ease-in;
+						margin:0 0.4em;
+
+						@media screen and (max-width: pem(1200)){
+							margin:0;
+						}
+
+						> a {
+							position:relative;
+							text-align:center;
+							padding:0 0.4em;
+							display:block;
+							transition: 100ms color ease-in;
+
+							&:after {
+								content:'';
+								display: block;
+								border-top:3px solid $blue;
+								margin: 0.5em auto 0;
+								width:80%;
+							}
+						}
+
+						.sub-menu {
+							position:absolute;
+							top:100%;
+							left:0;
+							z-index: 9;
+							visibility:hidden;
+							opacity:0;
+							width:100%;
+							transition:all 100ms ease-in;
+							background:$white;
+							display:flex;
+							flex-wrap:wrap;
+							justify-content: center;
+							align-items: center;
+							padding:0.5em;
+							box-shadow: 0 3px 3px -3px rgba(0,0,0,0.2);
+
+							a {
+								font-size:0.7em;
+								color:$black;
+								padding:0.4em 1em;
+							}
+						}
+
+						&.menu-item-has-children {
+							&:hover,
+							&.hover {
+								.sub-menu {
+									visibility:visible;
+									opacity:1;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+#shiftnav-toggle-main {
+	display: none;
+	background:$blue;
+
+	@media screen and (max-width: pem(750)){
+		display: block;
+	}
+}
+
+.shiftnav {
+	font-size:1em;
+	background:$blue !important;
+	color:$white;
+
+	.shiftnav-menu-title {
+	    padding: 0 !important;
+	    border-bottom:1px solid $blue;
+	    
+	    a {
+	    	padding: 1em !important;
+	    	display: block;
+	    	text-indent: -9999em;
+	    	background:white url('images/logo.png') center no-repeat;
+	    }
+	}
+
+	.shiftnav-target {
+		color:$white;
+	}
+
+	.current-menu-item {
+		> .shiftnav-target {
+			background:$white;
+			color:$blue;
+		}
+	}
+}

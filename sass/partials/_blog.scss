@@ -1,0 +1,65 @@
+.blog,
+.archive,
+.category,
+.search {
+	.post-grid-wrap {
+		padding-top:8em;
+
+		.post-grid {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+
+			.post-item {
+				flex:0 0 auto;
+				width:28%;
+				margin:0 1em 4em;
+
+				@media screen and (max-width: pem(1000)){
+					width:44%;
+				}
+
+				@media screen and (max-width: pem(650)){
+					width:100%;
+					margin:0 0 4em;
+				}
+
+				.image-wrap {
+					height:200px;
+					margin-bottom:1em;
+
+					a {
+					    display: block;
+						width: 100%;
+						height: 100%;
+					}
+				}
+
+				.post-title {
+					font-size:1.2em;
+				}
+			}
+		}
+	}
+}
+
+.single {
+	.post-title {
+		padding-top:4em;
+		font-size:2em;
+	}
+
+	.user-content {
+		margin-bottom:2em;
+	}
+
+	.categories {
+		ul {
+			display: inline-block;
+
+			li {
+				display: inline-block;
+			}
+		}
+	}
+}

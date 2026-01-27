@@ -1,0 +1,56 @@
+// Functions
+
+@function pem($pxval, $base: 16) {
+    @if $pxval ==0 {
+        @return 0em;
+    }
+
+    @else {
+        @return #{calc($pxval / $base)}em;
+    }
+}
+
+// font awesome (included in functions)
+// cheatsheet https://fontawesome.com/icons
+@mixin fas() {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 900;
+}
+
+@mixin far() {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 400;
+}
+
+@mixin fal() {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 300;
+}
+
+@mixin fab() {
+    font-family: 'Font Awesome 5 Brands';
+    font-weight: 400;
+}
+
+// placeholders
+@mixin placeholder($color) {
+    &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: $color;
+    }
+
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $color;
+    }
+
+    &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: $color;
+    }
+
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        color: $color;
+    }
+}

@@ -1,0 +1,142 @@
+.single-associate {
+	.associate-wrap {
+		padding-top:8em;
+
+		.associate-info {
+			display:flex;
+			flex-wrap:wrap;
+
+			.image-wrap {
+				flex:0 0 200px;
+				height:250px;
+				margin-right:6em;
+				margin-bottom:2em;
+			}
+
+			.info-wrap {
+				flex:1 1 auto;
+				margin-bottom:2em;
+
+				.title-wrap {
+					&:after {
+						content: '';
+						display:block;
+						width:80%;
+						max-width:200px;
+						border-top:3px solid $blue;
+						margin-bottom:1.5em;
+					}
+
+					.associate-name {
+						font-size:2em;
+						margin-bottom:0.3em;
+					}
+
+					.associate-title {
+						font-size:1.2em;
+						margin-bottom:1em;
+					}
+				}
+
+				.info-list {
+					font-size:1.2em;
+
+					li {
+						margin-bottom:1em;
+					}
+				}
+
+                .social {
+                    margin-bottom: 1em;
+                    font-size:1.4em;
+
+                    li {
+                        display: inline-block;
+                        margin-right:0.5em;
+
+                        a {
+                            color:$grey;
+
+                            &:hover {
+                                color:$blue;
+                            }
+                        }
+                    }
+                }
+			}
+		}
+
+		.content-wrap {
+			margin-bottom:4em;
+            text-align: justify;
+		}
+
+        .awards-title {
+            text-align: center;
+        }
+
+        .awards {
+            margin-bottom:6em;
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: center;
+            align-items: center;
+
+            .award {
+                margin:0.7em;
+                flex:1 1 auto;
+                max-width:calc(25% - 2em);
+                min-width: 200px;
+                width:100%;
+                text-align: center;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+               
+                &.col-1 {
+                    max-width:calc(100% - 2em);
+                }
+
+                &.col-2 {
+                    max-width:calc(50% - 2em);
+                }
+
+                &.col-3 {
+                    max-width:calc(33% - 2em);
+                }
+
+                .award-wrap {
+                    border-radius:3px;
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+                    background:white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    max-width:250px;
+
+                    img {
+                        width:100%;
+                    }
+                }
+		    }
+        }
+
+		.fun-facts {
+			margin-bottom: 4em;
+
+			li {
+				margin-top: 4em;
+				text-align: center;
+
+				&:before {
+					content:'';
+					display: block;
+					margin: 0 auto;
+					width:300px;
+					border-top:3px solid $blue;
+					margin-bottom:4em;
+				}
+			}
+		}
+	}
+}

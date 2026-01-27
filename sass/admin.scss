@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.components-notice-list {
+	position: static !important;
+}
+
+.wp-block {
+	max-width: 95%;
+}
+
+.acf-field-accordion {
+	margin-bottom:0.5em !important;
+	
+
+	.acf-accordion-title {
+		background:#0073aa;
+		color:#ffffff;
+
+		i {
+			color:#ffffff !important;
+		}
+
+		&:hover {
+			background:#0073aa !important;
+			color:#ffffff;
+		}
+	}
+}

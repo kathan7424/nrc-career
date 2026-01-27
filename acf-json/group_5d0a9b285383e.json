@@ -1,0 +1,360 @@
+{
+    "key": "group_5d0a9b285383e",
+    "title": "Block - Two Column",
+    "fields": [
+        {
+            "key": "field_669fa92ec709a",
+            "label": "Two Column",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6568b192546b4",
+            "label": "Section ID",
+            "name": "section_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5d0a9b326e26e",
+            "label": "Layout",
+            "name": "layout",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "image-wysiwyg": "Image \/ Wysiwyg",
+                "video-wysiwyg": "Video \/ Wysiwyg",
+                "wysiwyg-image": "Wysiwyg \/ Image",
+                "wysiwyg-wysiwyg": "Wysiwyg \/ Wysiwyg",
+                "wysiwyg-video": "Wysiwyg \/ Video",
+                "image-image": "Image \/ Image",
+                "image-video": "Image \/ Video",
+                "video-image": "Video \/ Image",
+                "video-video": "Video \/ Video"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d0a9bbf6e26f",
+            "label": "Left Image",
+            "name": "left_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "image-wysiwyg"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "image-image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "image-video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "default_value": ""
+        },
+        {
+            "key": "field_5d0a9bda6e271",
+            "label": "Left Video",
+            "name": "left_video",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "video-wysiwyg"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "video-image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "video-video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5d0a9bfa6e272",
+            "label": "Left Wysiwyg",
+            "name": "left_wysiwyg",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "wysiwyg-image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "wysiwyg-video"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "wysiwyg-wysiwyg"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 1
+        },
+        {
+            "key": "field_5d2ce186c2ba5",
+            "label": "Right Image",
+            "name": "right_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "wysiwyg-image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "image-image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "video-image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "default_value": ""
+        },
+        {
+            "key": "field_5d2ce19cc2ba6",
+            "label": "Right Video",
+            "name": "right_video",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "wysiwyg-video"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "image-video"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "video-video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5d2ce1b2c2ba7",
+            "label": "Right Wysiwyg",
+            "name": "right_wysiwyg",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "image-wysiwyg"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "video-wysiwyg"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5d0a9b326e26e",
+                        "operator": "==",
+                        "value": "wysiwyg-wysiwyg"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/two-column"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1721739574
+}
