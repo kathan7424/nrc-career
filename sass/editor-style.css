@@ -845,7 +845,7 @@ body .user-content ol li {
 }
 @media screen and (max-width: 46.875em) {
   .page-cover-block .cover-content-wrap {
-    padding: 3em 0 3em !important;
+    padding: 5em 0 3em !important;
   }
 }
 .page-cover-block .cover-content-wrap.overlay {
@@ -860,13 +860,16 @@ body .user-content ol li {
   height: 100%;
   width: 100%;
 }
-.page-cover-block .cover-content-wrap .cover-wrap .cover-title {
-  margin-bottom: 0.5em;
+@media only screen and (max-width: 800px) {
+  .page-cover-block .cover-content-wrap .cover-wrap .cover-title {
+    font-size: 34px;
+  }
 }
 .page-cover-block .cover-content-wrap .cover-wrap .cover-search {
   margin-bottom: 4em;
 }
 .page-cover-block .cover-content-wrap .cover-wrap .cover-subtitle {
+  margin-top: 1rem;
   font-size: 1.4em;
 }
 .page-cover-block .cover-content-wrap .cover-wrap .splashImage {
@@ -1528,4 +1531,141 @@ body .user-content ol li {
 }
 .section-navigation-block .sectionNav .navItem a:hover {
   color: #003366;
-}/*# sourceMappingURL=editor-style.css.map */
+}
+
+.block__propertyListing .searchForm {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+}
+.block__propertyListing .searchForm .searchIcon {
+  padding: 1rem 0 1rem 1.5rem;
+}
+.block__propertyListing .searchForm input {
+  flex: 1 1 auto;
+  outline: 0;
+  border: none;
+  font-family: "Open Sans";
+}
+@media only screen and (max-width: 800px) {
+  .block__propertyListing .searchForm input {
+    font-size: 16px;
+  }
+}
+.block__propertyListing .searchForm input::placeholder {
+  color: #333333;
+}
+.block__propertyListing .searchForm button {
+  background-color: #003366;
+  color: white;
+  padding: 1rem 1.5rem;
+}
+.block__propertyListing .disclaimer {
+  font-size: 14px;
+  margin-top: 2rem;
+}
+.block__propertyListing .propertyListWrap {
+  margin-top: 4rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media only screen and (max-width: 1100px) {
+  .block__propertyListing .propertyListWrap {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 800px) {
+  .block__propertyListing .propertyListWrap {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.block__propertyListing .propertyListWrap .property {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+.block__propertyListing .propertyListWrap .property .imageWrap {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.block__propertyListing .propertyListWrap .property .imageWrap img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap {
+  padding: 1rem;
+  font-size: 14px;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .status {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .status i {
+  font-size: 12px;
+  color: green;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .status.pending i {
+  color: #f4b630;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .price {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .specList {
+  display: flex;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .address1 {
+  margin-bottom: 0.3rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .agentWrap {
+  margin-top: 1rem;
+  border-top: 1px solid #eeeeee;
+  padding-top: 1rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .agentWrap > div {
+  margin-bottom: 0.5rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .agentWrap > div a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  text-decoration: none;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .agentWrap .agentName {
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+.block__propertyListing .propertyListWrap .property .contentWrap .agentWrap .compWrap {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+.block__propertyListing .loadMoreWrap {
+  display: none;
+  margin-top: 4rem;
+  text-align: center;
+}
+.block__propertyListing .loadMoreWrap.active {
+  display: block;
+}
+.block__propertyListing .loadMoreWrap .loadMore {
+  background-color: #003366;
+  color: white;
+  padding: 1rem 3rem;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=editor-style.css.map */

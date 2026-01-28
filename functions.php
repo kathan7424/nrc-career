@@ -158,7 +158,10 @@
         'agent-faqs' => "Agent FAQs",
         'agent-benefits' => "Agent Benefits",
         'agent-reviews' => "Agent Reviews",
-        'property-listing' => "Property Listing"
+        'property-listing' => "Property Listing",
+        'infinite-slids' => "Infinite Slids",
+        'multicol-faqs' => "Multicol FAQs",
+        'commision' => "Commision"
 	);
 
 	add_filter('allowed_block_types', 'bc_allowed_block_types');

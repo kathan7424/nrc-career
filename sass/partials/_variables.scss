@@ -4,8 +4,14 @@ $base-font-size: 18px;
 // fonts
 $base: 'Open Sans';
 
-$mobile: '800px';
-$tablet: '1100px';
+// $mobile: '800px';
+// $tablet: '1100px';
+
+// Breakpoints
+$breakpoint-1280: 1280px;
+$breakpoint-1024: 1024px;
+$breakpoint-768: 768px;
+$breakpoint-576: 576px;
 
 // colors
 $white: #ffffff;
@@ -13,3 +19,16 @@ $black: #000000;
 $grey: #cccccc;
 $dark-grey: #545454;
 $blue: #003366;
+
+// Spacing
+$space-128: 128px;
+$space-96: 96px;
+$space-72: 72px;
+$space-64: 64px;
+$space-56: 56px;
+$space-48: 48px;
+$space-40: 40px;
+$space-32: 32px;
+$space-24: 24px;
+$space-16: 16px;
+$space-0: 0px;
