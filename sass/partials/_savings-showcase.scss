@@ -1,0 +1,217 @@
+// Savings Showcase Block
+.savings-showcase-block {
+    background: $white;
+    
+    padding: $space-100 20px;
+    
+    @media (max-width: $breakpoint-1280) {
+        padding: $space-64 20px;
+
+        .wrapper {
+            padding: 0;
+        }
+    }
+
+     @media (max-width: 767.98px) {
+       padding: $space-48 20px;
+    }
+}
+
+// Header Section
+.savings-showcase-header {
+    text-align: center;
+    margin-bottom: $space-56;
+    
+    @media screen and (max-width: pem(768)) {
+        margin-bottom: $space-40;
+    }
+}
+
+.savings-showcase-title {
+    // font-size: 2.8em;
+    font-weight: 400;
+    color: $dark-grey;
+    line-height: 1.3;
+    margin: 0 0 20px 0;
+    letter-spacing: normal;
+    text-transform: capitalize;
+
+    strong {
+        color: $blue;
+    }
+    
+    // @media screen and (max-width: pem(1024)) {
+    //     font-size: 2.4em;
+    // }
+    
+    @media screen and (max-width: pem(768)) {
+        // font-size: 2em;
+        margin-bottom: $space-16;
+    }
+    
+    // @media screen and (max-width: pem(576)) {
+    //     font-size: 1.6em;
+    // }
+}
+
+.savings-title-prefix {
+    letter-spacing: normal;
+}
+
+.savings-title-main {
+    color: $dark-grey;
+    font-weight: 700;
+}
+
+.savings-title-will {
+    color: $dark-grey;
+    font-weight: 400;
+}
+
+.savings-title-highlight {
+    color: $blue;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+.title-underline {
+    position: relative;
+    padding-bottom: 40px;
+
+    &:after{
+        content: "";
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        background-image: url(/nrc/wp-content/uploads/2026/01/title-line-icon-red-new.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        left: 0;
+        bottom: 0;
+    }
+
+    @media screen and (max-width: pem(768)) {
+       padding-bottom: 30px;
+    }
+}
+
+.savings-title-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+}
+
+.savings-showcase-subtitle {
+    font-size: 1.1em;
+    color: $dark-grey;
+    line-height: 1.6;
+    margin: 0;
+
+    span {
+        color: $blue;
+    }
+    
+    @media screen and (max-width: pem(768)) {
+        font-size: 1em;
+    }
+    
+    @media screen and (max-width: pem(576)) {
+        font-size: 0.95em;
+    }
+}
+
+// Examples Grid
+.savings-examples-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-32;
+    margin-bottom: $space-56;
+    
+    @media screen and (max-width: pem(1024)) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-24;
+        margin-bottom: $space-40;
+    }
+    
+    @media screen and (max-width: pem(768)) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-24;
+        margin-bottom: $space-40;
+    }
+    
+    @media screen and (max-width: pem(576)) {
+        grid-template-columns: 1fr;
+        gap: $space-16;
+        margin-bottom: $space-32;
+    }
+}
+
+.savings-example-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: $grey;
+    aspect-ratio: 1 / 1;
+    transition: all 0.3s ease;
+    
+    @media screen and (max-width: pem(768)) {
+        border-radius: 15px;
+    }
+    
+    @media screen and (max-width: pem(576)) {
+        border-radius: 12px;
+    }
+    
+    &:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+    }
+}
+
+.savings-example-image {
+    width: 100%;
+    height: 100%;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.savings-example-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+}
+
+// Footer Section
+.savings-showcase-footer {
+    text-align: center;
+}
+
+.savings-showcase-btn {
+    display: inline-block;
+    padding: 0.8em 3em;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: 600;
+    
+    @media screen and (max-width: pem(768)) {
+        padding: 0.7em 2.5em;
+        font-size: 0.95em;
+    }
+    
+    @media screen and (max-width: pem(576)) {
+        padding: 0.6em 2em;
+        font-size: 0.9em;
+        width: 100%;
+    }
+}

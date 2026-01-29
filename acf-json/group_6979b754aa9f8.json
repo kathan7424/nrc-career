@@ -1,10 +1,10 @@
 {
-    "key": "group_6569e41616f64",
-    "title": "Block - Agent FAQs",
+    "key": "group_6979b754aa9f8",
+    "title": "Block - Image Carousel",
     "fields": [
         {
-            "key": "field_669fa85533119",
-            "label": "Agent FAQs",
+            "key": "field_6979f8e690037",
+            "label": "Infinite Slides",
             "name": "",
             "aria-label": "",
             "type": "accordion",
@@ -21,9 +21,9 @@
             "endpoint": 0
         },
         {
-            "key": "field_6569e4161f0ee",
-            "label": "Section ID",
-            "name": "section_id",
+            "key": "field_6979b7bb1e59c",
+            "label": "Additional Class",
+            "name": "additional_class",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -36,14 +36,15 @@
             },
             "default_value": "",
             "maxlength": "",
+            "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
             "append": ""
         },
         {
-            "key": "field_6569e4161f12d",
-            "label": "Section Title",
-            "name": "section_title",
+            "key": "field_697b4b947a4ef",
+            "label": "Sub Heading",
+            "name": "sub_heading",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -56,16 +57,17 @@
             },
             "default_value": "",
             "maxlength": "",
+            "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
             "append": ""
         },
         {
-            "key": "field_6569e4161f168",
-            "label": "Posts per page",
-            "name": "posts_per_page",
+            "key": "field_697b4ba07a4f0",
+            "label": "Main  Heading",
+            "name": "main_heading",
             "aria-label": "",
-            "type": "number",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -74,20 +76,47 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 5,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6979b86bb7354",
+            "label": "Carousel Images",
+            "name": "carousel_images",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
             "min": "",
             "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
         },
         {
-            "key": "field_6569e4161f1a2",
-            "label": "More Button Text",
-            "name": "more_button_text",
+            "key": "field_697b4bbd7a4f1",
+            "label": "Content Area",
+            "name": "content_area",
             "aria-label": "",
-            "type": "text",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -97,10 +126,11 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         }
     ],
     "location": [
@@ -108,7 +138,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/agent-faqs"
+                "value": "acf\/infinite-slids"
             }
         ]
     ],
@@ -122,5 +152,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1769597397
+    "modified": 1769688015
 }

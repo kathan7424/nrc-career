@@ -1,10 +1,10 @@
 {
-    "key": "group_6569e41616f64",
-    "title": "Block - Agent FAQs",
+    "key": "group_697b17bf4a1ab",
+    "title": "Block – Form",
     "fields": [
         {
-            "key": "field_669fa85533119",
-            "label": "Agent FAQs",
+            "key": "field_697b34e47edb2",
+            "label": "Form",
             "name": "",
             "aria-label": "",
             "type": "accordion",
@@ -21,9 +21,9 @@
             "endpoint": 0
         },
         {
-            "key": "field_6569e4161f0ee",
-            "label": "Section ID",
-            "name": "section_id",
+            "key": "field_697b17c0594e0",
+            "label": "Additional Class",
+            "name": "additional_class",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -36,14 +36,36 @@
             },
             "default_value": "",
             "maxlength": "",
+            "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
             "append": ""
         },
         {
-            "key": "field_6569e4161f12d",
-            "label": "Section Title",
-            "name": "section_title",
+            "key": "field_697b17e3594e1",
+            "label": "Content Area",
+            "name": "content_area",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_697b17f6594e2",
+            "label": "Form  Shortcode",
+            "name": "form__shortcode",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -56,48 +78,7 @@
             },
             "default_value": "",
             "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6569e4161f168",
-            "label": "Posts per page",
-            "name": "posts_per_page",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 5,
-            "min": "",
-            "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6569e4161f1a2",
-            "label": "More Button Text",
-            "name": "more_button_text",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
+            "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
             "append": ""
@@ -108,7 +89,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/agent-faqs"
+                "value": "acf\/form"
             }
         ]
     ],
@@ -122,5 +103,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1769597397
+    "modified": 1769682163
 }

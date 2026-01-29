@@ -1,5 +1,6 @@
 <?php 
 	$data = $block['data']; 
+    
     $more_button_text = isset($data['more_button_text']) && !empty($data['more_button_text']) ? $data['more_button_text'] : 'Read More';
     $ppp = isset($data['posts_per_page']) && !empty($data['posts_per_page']) ? $data['posts_per_page'] : 10; 
 ?>

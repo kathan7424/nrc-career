@@ -1,10 +1,10 @@
 {
-    "key": "group_6569e41616f64",
-    "title": "Block - Agent FAQs",
+    "key": "group_697aeb860d0ff",
+    "title": "Block – Showcase",
     "fields": [
         {
-            "key": "field_669fa85533119",
-            "label": "Agent FAQs",
+            "key": "field_697b4738fd7e2",
+            "label": "Showcase",
             "name": "",
             "aria-label": "",
             "type": "accordion",
@@ -21,11 +21,11 @@
             "endpoint": 0
         },
         {
-            "key": "field_6569e4161f0ee",
-            "label": "Section ID",
-            "name": "section_id",
+            "key": "field_697aeb86bd164",
+            "label": "Section Content",
+            "name": "showcase_title",
             "aria-label": "",
-            "type": "text",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -35,59 +35,46 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
-            "key": "field_6569e4161f12d",
-            "label": "Section Title",
-            "name": "section_title",
+            "key": "field_697aebf7bd165",
+            "label": "Showcase",
+            "name": "short",
             "aria-label": "",
-            "type": "text",
+            "type": "gallery",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6569e4161f168",
-            "label": "Posts per page",
-            "name": "posts_per_page",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 5,
+            "return_format": "array",
+            "library": "all",
             "min": "",
-            "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
+            "max": 6,
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
         },
         {
-            "key": "field_6569e4161f1a2",
-            "label": "More Button Text",
-            "name": "more_button_text",
+            "key": "field_697aec35bd166",
+            "label": "Review Button",
+            "name": "review_button",
             "aria-label": "",
-            "type": "text",
+            "type": "link",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -96,11 +83,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "return_format": "array",
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -108,7 +92,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/agent-faqs"
+                "value": "acf\/savings-showcase"
             }
         ]
     ],
@@ -122,5 +106,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1769597397
+    "modified": 1769686860
 }

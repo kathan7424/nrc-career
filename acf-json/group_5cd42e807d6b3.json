@@ -59,6 +59,40 @@
             "esc_html": 0
         },
         {
+            "key": "field_697af376d3e62",
+            "label": "Featured Reviews",
+            "name": "featured_reviews",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "review"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "return_format": "object",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
+        },
+        {
             "key": "field_5cdad664712c1",
             "label": "Display Type",
             "name": "display_type",
@@ -82,63 +116,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5ceeef48d88a8",
-            "label": "Total Reviews Label",
-            "name": "total_reviews_label",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5cdad664712c1",
-                        "operator": "==",
-                        "value": "all"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
             "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5ceeef61d88a9",
-            "label": "Total 5 Star Reviews Label",
-            "name": "total_5_star_reviews_label",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5cdad664712c1",
-                        "operator": "==",
-                        "value": "all"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "create_options": 0,
+            "save_options": 0
         }
     ],
     "location": [
@@ -159,5 +139,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1721739501
+    "display_title": "",
+    "modified": 1769672995
 }

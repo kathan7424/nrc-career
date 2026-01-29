@@ -39,8 +39,15 @@
 		}
 	}
 	add_action('after_setup_theme', 'setup_theme');
+    add_filter('upload_mimes', 'enable_svg_upload');
+        function enable_svg_upload($mimes) {
+            $mimes['svg']  = 'image/svg+xml';
+            $mimes['svgz'] = 'image/svg+xml';
+            return $mimes;
+    }
 
 	function bc_scripts(){
+
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js');
 		// wp_enqueue_script('nav-position', get_template_directory_uri() . '/js/nav-position.js');
@@ -55,7 +62,8 @@
 	add_action('admin_enqueue_scripts', 'bc_scripts');
 
 	function bc_styles(){
-
+        define( 'THEME_VERSION', time() );
+        wp_enqueue_style('bc-fonts-playwrite', 'https://fonts.googleapis.com/css2?family=Playwrite+AU+TAS:wght@100..400&display=swap');
 		wp_enqueue_style('bc-fonts', get_template_directory_uri() . '/fonts/fonts.css');
 
 		if(is_admin()){	
@@ -64,7 +72,7 @@
 			wp_enqueue_style('bc', get_template_directory_uri() . '/admin.css');
 		}else{
 			// add theme stylesheets
-			wp_enqueue_style('bc', get_template_directory_uri() . '/style.css');
+			wp_enqueue_style('bc', get_template_directory_uri() . '/style.css',array(),THEME_VERSION);
 		}
 
 		wp_enqueue_style('slick-slider', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
@@ -159,9 +167,14 @@
         'agent-benefits' => "Agent Benefits",
         'agent-reviews' => "Agent Reviews",
         'property-listing' => "Property Listing",
-        'infinite-slids' => "Infinite Slids",
+        'infinite-slids' => "Infinite Slides",
         'multicol-faqs' => "Multicol FAQs",
-        'commision' => "Commision"
+        'commission' => "Commission",
+        'features' => "Features",
+        "commission-plan-hero" => "Commission Plan Hero",
+        "savings-showcase" => "Savings Showcase",
+        "form" => "Form Block",
+        
 	);
 
 	add_filter('allowed_block_types', 'bc_allowed_block_types');
@@ -439,142 +452,384 @@
 		die();
     }
 
-    // get reviews
-    add_action('wp_ajax_nopriv_get_reviews', 'get_reviews');
-    add_action('wp_ajax_get_reviews', 'get_reviews');
-    function get_reviews() {
-        ob_start();
+add_action('wp_ajax_nopriv_get_reviews', 'get_reviews');
+add_action('wp_ajax_get_reviews', 'get_reviews');
 
-        // get array of ints from post
-        $exclude = $_POST['exclude'] ? array_map('intval', explode(',', $_POST['exclude'])) : '';
-        $single = $_POST['single'];
-        $ppp = $single ? 1 : $_POST['ppp'];
+function get_reviews() {
+    ob_start();
 
-        // 5 star reviews only
+    $exclude = !empty($_POST['exclude'])
+        ? array_map('intval', explode(',', $_POST['exclude']))
+        : [];
+
+    $single = !empty($_POST['single']);
+    $featured_ids = !empty($_POST['featured_ids']) 
+        ? array_map('intval', explode(',', $_POST['featured_ids'])) 
+        : [];
+    
+    $ppp = intval($_POST['ppp']);
+    $newly_shown = [];
+
+    // ====================
+    // SINGLE REVIEW MODE
+    // ====================
+    if ($single) {
+        // If featured review exists and hasn't been shown, show that first
+        if (!empty($featured_ids) && !in_array($featured_ids[0], $exclude)) {
+            $args = array(
+                'post_type'      => 'review',
+                'posts_per_page' => 1,
+                'post_status'    => 'publish',
+                'post__in'       => array($featured_ids[0])
+            );
+            
+            $featured_review = new WP_Query($args);
+            if ($featured_review->have_posts()) {
+                $review = $featured_review->posts[0];
+                $head_shot = function_exists('get_field') ? get_field('head_shot', $review->ID) : false;
+                $img_url = $head_shot ? esc_url(is_array($head_shot) ? $head_shot['url'] : wp_get_attachment_image_url($head_shot, 'thumbnail')) : home_url('/wp-content/uploads/2026/01/avtar-profile.jpg');
+                ?>
+                <div class="review-inner-list featured-review">
+                    <div class="review-wrap single">
+                        <div class="agent-profile-pic">
+                            <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title($review->ID)); ?>">
+                        </div>
+                        <span class="before">&ldquo;</span>
+                        <div class="review">
+                            <h3 class="title"><?php echo esc_html($review->post_title); ?></h3>
+                            <div class="review-content">
+                                <?php echo wp_kses_post($review->post_content); ?>
+                            </div>
+                        </div>
+                        <span class="after">&rdquo;</span>
+                    </div>
+                </div>
+                <?php
+                
+                $html = ob_get_clean();
+                wp_send_json(array(
+                    'html'    => $html,
+                    'more'    => false,
+                    'exclude' => array_merge($exclude, [$review->ID])
+                ));
+            }
+        }
+        
+        // Otherwise show random 5-star review
         $args = array(
-            'post_type' => 'review',
-            'posts_per_page' => $ppp,
-            'post_status' => 'publish',
-            'orderby' => 'rand',
-            'meta_query' => array(
+            'post_type'      => 'review',
+            'posts_per_page' => 1,
+            'post_status'    => 'publish',
+            'orderby'        => 'rand',
+            'post__not_in'   => $exclude,
+            'meta_query'     => array(
                 'relation' => 'AND',
                 array(
-                    'key' => 'satisfaction_rating',
-                    'value' => 90,
+                    'key'     => 'satisfaction_rating',
+                    'value'   => 90,
                     'compare' => '>=',
-                    'type' => 'numeric'
+                    'type'    => 'numeric'
                 ),
                 array(
-                    'key' => 'performance_rating',
-                    'value' => 90,
+                    'key'     => 'performance_rating',
+                    'value'   => 90,
                     'compare' => '>=',
-                    'type' => 'numeric'
+                    'type'    => 'numeric'
                 ),
                 array(
-                    'key' => 'recommendation_rating',
-                    'value' => 90,
+                    'key'     => 'recommendation_rating',
+                    'value'   => 90,
                     'compare' => '>=',
-                    'type' => 'numeric'
+                    'type'    => 'numeric'
                 )
             )
         );
-
-        // exclude if necessary
-        if ($exclude) {
-            $args['post__not_in'] = $exclude;
-        }
-
-        $reviews = new WP_Query($args);
-
-        if ($reviews->found_posts) {
-            $exclude = array();
-
-            foreach ($reviews->posts as $review) {
-
-                // exclude this for future requests
-                $exclude[] = $review->ID;
-
-                // review meta
-                $associate = get_post_meta($review->ID, 'associate', true);
-                ?>
-	                <div class="review-wrap<?php if($single){echo ' single';} ?>">
-                        <span class="before">&ldquo;</span>
-
-                        <div class="review">
-                            <h3 class="title"><?php echo $review->post_title; ?></h3>
-                            <h4 class="subtitle">Worked with <?php echo $associate; ?></h4>
-                            
-                            <?php
-                                // insert the read more
-                                $review_content = $review->post_content;
-                                $content_arr = explode(' ', $review_content);
-                                $content_arr_count = count($content_arr);
-
-                                if ($content_arr_count > 50){
-                                    $first = array_slice($content_arr, 0, 50);
-                                    $first[] = '<span class="more" style="display:none;">';
-                                    $last = array_slice($content_arr, 51, ($content_arr_count - 50));
-                                    $last[] = '</span><span class="read-more">... Read More</span>';
-                                    $review_content = implode(' ', array_merge($first, $last));
-                                }
-                            ?>
-
-                            <div class="review-content"><?php echo $review_content; ?></div>
-                            <div class="ratings">
-                                <?php 
-                                    $rating_categories = array(
-                                        'satisfaction_rating' => 'Satisfaction', 
-                                        'performance_rating' => 'Performance', 
-                                        'recommendation_rating' => 'Recommendation'
-                                    );
-                                ?>
-                                <?php foreach($rating_categories as $meta_key => $label) : ?>
-                                    <div class="rating">
-                                        <h5 class="rating-label"><?php echo $label; ?></h5>
-                                        <div class="stars">
-                                            <?php 
-                                                $rating = intval(get_post_meta($review->ID, $meta_key, true));
-                                                $full_stars = floor($rating / 20);
-                                                $total = 0;
-                                                for($i = 0; $i < $full_stars; $i++){
-                                                    $total++;
-                                                    ?><i class="fas fa-star"></i><?php
-                                                }
-
-                                                if($rating % 20){
-                                                    $total++;
-                                                    ?><i class="fas fa-star-half-alt"></i><?php
-                                                }
-
-                                                $half_stars = 5 - $total;
-                                                if($half_stars){
-                                                    for($i = 0; $i < $half_stars; $i++){
-                                                        ?><i class="fal fa-star"></i><?php
-                                                    }
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                        
-                        <span class="after">&rdquo;</span>
+        
+        $review_query = new WP_Query($args);
+        if ($review_query->have_posts()) {
+            $review = $review_query->posts[0];
+            $head_shot = function_exists('get_field') ? get_field('head_shot', $review->ID) : false;
+            $img_url = $head_shot ? esc_url(is_array($head_shot) ? $head_shot['url'] : wp_get_attachment_image_url($head_shot, 'thumbnail')) : home_url('/wp-content/uploads/2026/01/avtar-profile.jpg');
+            ?>
+            <div class="review-inner-list">
+                <div class="review-wrap single">
+                    <div class="agent-profile-pic">
+                        <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title($review->ID)); ?>">
                     </div>
-                <?php
+                    <span class="before">&ldquo;</span>
+                    <div class="review">
+                        <h3 class="title"><?php echo esc_html($review->post_title); ?></h3>
+                        <div class="review-content">
+                            <?php echo wp_kses_post($review->post_content); ?>
+                        </div>
+                    </div>
+                    <span class="after">&rdquo;</span>
+                </div>
+            </div>
+            <?php
+        }
+        
+        $html = ob_get_clean();
+        wp_send_json(array(
+            'html'    => $html,
+            'more'    => false,
+            'exclude' => array_merge($exclude, isset($review) ? [$review->ID] : [])
+        ));
+    }
+
+    // ====================
+    // ALL REVIEWS MODE
+    // ====================
+    
+    // First load (empty exclude array) - show featured + pad to 6
+    if (empty($exclude)) {
+        $total_output = 0;
+        
+        // Show featured reviews first
+        if (!empty($featured_ids)) {
+            $featured_args = array(
+                'post_type'      => 'review',
+                'posts_per_page' => count($featured_ids),
+                'post_status'    => 'publish',
+                'post__in'       => $featured_ids,
+                'orderby'        => 'post__in'
+            );
+            
+            $featured_reviews = new WP_Query($featured_args);
+            if ($featured_reviews->have_posts()) {
+                foreach ($featured_reviews->posts as $review) {
+                    $total_output++;
+                    $newly_shown[] = $review->ID;
+                    $head_shot = function_exists('get_field') ? get_field('head_shot', $review->ID) : false;
+                    $img_url = $head_shot ? esc_url(is_array($head_shot) ? $head_shot['url'] : wp_get_attachment_image_url($head_shot, 'thumbnail')) : home_url('/wp-content/uploads/2026/01/avtar-profile.jpg');
+
+                    $review_content = wp_kses_post($review->post_content);
+                    $content_arr = explode(' ', wp_strip_all_tags($review_content));
+                    $content_arr_count = count($content_arr);
+
+                    if ($content_arr_count > 50) {
+                        $first = array_slice($content_arr, 0, 50);
+                        $first[] = '<span class="more" style="display:none;">';
+                        $last = array_slice($content_arr, 50);
+                        $last[] = '</span><span class="read-more">... Read More</span>';
+                        $review_content = implode(' ', array_merge($first, $last));
+                    }
+
+                    ?>
+                    <div class="review-inner-list featured-review">
+                        <div class="review-wrap">
+                            <div class="agent-profile-pic">
+                                <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title($review->ID)); ?>">
+                            </div>
+                            <span class="before">&ldquo;</span>
+                            <div class="review">
+                                <h3 class="title"><?php echo esc_html($review->post_title); ?></h3>
+                                <div class="review-content">
+                                    <?php echo $review_content; ?>
+                                </div>
+                            </div>
+                            <span class="after">&rdquo;</span>
+                        </div>
+                    </div>
+                    <?php
+                }
             }
         }
 
-        $html = ob_get_clean();
-        if ($single) {
-            $more = false;
-        } else {
-            $more = ($reviews->found_posts < $ppp) ? false : true;
-        }
+        // Pad to 6 with random 5-star reviews
+        $need_more = max(0, 6 - $total_output);
+        if ($need_more > 0) {
+            $padding_args = array(
+                'post_type'      => 'review',
+                'posts_per_page' => $need_more,
+                'post_status'    => 'publish',
+                'orderby'        => 'rand',
+                'post__not_in'   => array_merge($featured_ids, $newly_shown),
+                'meta_query'     => array(
+                    'relation' => 'AND',
+                    array(
+                        'key'     => 'satisfaction_rating',
+                        'value'   => 90,
+                        'compare' => '>=',
+                        'type'    => 'numeric'
+                    ),
+                    array(
+                        'key'     => 'performance_rating',
+                        'value'   => 90,
+                        'compare' => '>=',
+                        'type'    => 'numeric'
+                    ),
+                    array(
+                        'key'     => 'recommendation_rating',
+                        'value'   => 90,
+                        'compare' => '>=',
+                        'type'    => 'numeric'
+                    )
+                )
+            );
 
-        echo json_encode(array('html' => $html, 'more' => $more, 'exclude' => $exclude));
-        die();
+            $padding_reviews = new WP_Query($padding_args);
+            if ($padding_reviews->have_posts()) {
+                foreach ($padding_reviews->posts as $review) {
+                    $newly_shown[] = $review->ID;
+                    $head_shot = function_exists('get_field') ? get_field('head_shot', $review->ID) : false;
+                    $img_url = $head_shot ? esc_url(is_array($head_shot) ? $head_shot['url'] : wp_get_attachment_image_url($head_shot, 'thumbnail')) : home_url('/wp-content/uploads/2026/01/avtar-profile.jpg');
+                    ?>
+                    <div class="review-inner-list">
+                        <div class="review-wrap">
+                            <div class="agent-profile-pic">
+                                <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title($review->ID)); ?>">
+                            </div>
+                            <span class="before">&ldquo;</span>
+                            <div class="review">
+                                <h3 class="title"><?php echo esc_html($review->post_title); ?></h3>
+                                <div class="review-content">
+                                    <?php 
+                                    $review_content = wp_kses_post($review->post_content);
+                                    $content_arr = explode(' ', wp_strip_all_tags($review_content));
+                                    $content_arr_count = count($content_arr);
+
+                                    if ($content_arr_count > 50) {
+                                        $first = array_slice($content_arr, 0, 50);
+                                        $first[] = '<span class="more" style="display:none;">';
+                                        $last = array_slice($content_arr, 50);
+                                        $last[] = '</span><span class="read-more">... Read More</span>';
+                                        $review_content = implode(' ', array_merge($first, $last));
+                                    }
+                                    echo $review_content;
+                                    ?>
+                                </div>
+                            </div>
+                            <span class="after">&rdquo;</span>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+        }
+        
+        // Check if there are more reviews to load
+        $count_args = array(
+            'post_type'      => 'review',
+            'post_status'    => 'publish',
+            'post__not_in'   => array_merge($featured_ids, $newly_shown),
+            'fields'         => 'ids',
+            'meta_query'     => array(
+                'relation' => 'AND',
+                array(
+                    'key'     => 'satisfaction_rating',
+                    'value'   => 90,
+                    'compare' => '>=',
+                    'type'    => 'numeric'
+                ),
+                array(
+                    'key'     => 'performance_rating',
+                    'value'   => 90,
+                    'compare' => '>=',
+                    'type'    => 'numeric'
+                ),
+                array(
+                    'key'     => 'recommendation_rating',
+                    'value'   => 90,
+                    'compare' => '>=',
+                    'type'    => 'numeric'
+                )
+            )
+        );
+        $remaining = new WP_Query($count_args);
+        $more = $remaining->found_posts > 0;
+        
+        $html = ob_get_clean();
+        wp_send_json(array(
+            'html'    => $html,
+            'more'    => $more,
+            'exclude' => $newly_shown
+        ));
     }
+    
+    // Subsequent loads - load $ppp more reviews
+    $all_exclude = array_merge($exclude, $featured_ids);
+    
+    $args = array(
+        'post_type'      => 'review',
+        'posts_per_page' => $ppp,
+        'post_status'    => 'publish',
+        'orderby'        => 'rand',
+        'post__not_in'   => $all_exclude,
+        'meta_query'     => array(
+            'relation' => 'AND',
+            array(
+                'key'     => 'satisfaction_rating',
+                'value'   => 90,
+                'compare' => '>=',
+                'type'    => 'numeric'
+            ),
+            array(
+                'key'     => 'performance_rating',
+                'value'   => 90,
+                'compare' => '>=',
+                'type'    => 'numeric'
+            ),
+            array(
+                'key'     => 'recommendation_rating',
+                'value'   => 90,
+                'compare' => '>=',
+                'type'    => 'numeric'
+            )
+        )
+    );
+
+    $reviews = new WP_Query($args);
+
+    if ($reviews->have_posts()) {
+        foreach ($reviews->posts as $review) {
+            $newly_shown[] = $review->ID;
+            $head_shot = function_exists('get_field') ? get_field('head_shot', $review->ID) : false;
+            $img_url = $head_shot ? esc_url(is_array($head_shot) ? $head_shot['url'] : wp_get_attachment_image_url($head_shot, 'thumbnail')) : home_url('/wp-content/uploads/2026/01/avtar-profile.jpg');
+            ?>
+            <div class="review-inner-list">
+                <div class="review-wrap">
+                    <div class="agent-profile-pic">
+                        <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title($review->ID)); ?>">
+                    </div>
+                    <span class="before">&ldquo;</span>
+                    <div class="review">
+                        <h3 class="title"><?php echo esc_html($review->post_title); ?></h3>
+                        <div class="review-content">
+                            <?php 
+                            $review_content = wp_kses_post($review->post_content);
+                            $content_arr = explode(' ', wp_strip_all_tags($review_content));
+                            $content_arr_count = count($content_arr);
+
+                            if ($content_arr_count > 50) {
+                                $first = array_slice($content_arr, 0, 50);
+                                $first[] = '<span class="more" style="display:none;">';
+                                $last = array_slice($content_arr, 50);
+                                $last[] = '</span><span class="read-more">... Read More</span>';
+                                $review_content = implode(' ', array_merge($first, $last));
+                            }
+                            echo $review_content;
+                            ?>
+                        </div>
+                    </div>
+                    <span class="after">&rdquo;</span>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
+    $html = ob_get_clean();
+    
+    // Check if more reviews available
+    $more = $reviews->found_posts >= $ppp;
+
+    wp_send_json(array(
+        'html'    => $html,
+        'more'    => $more,
+        'exclude' => array_merge($exclude, $newly_shown)
+    ));
+}
 
     // get property listing grid
     add_action('wp_ajax_nopriv_get_property_listing', 'get_property_listing');
